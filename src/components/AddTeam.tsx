@@ -30,14 +30,13 @@ export default function AddTeam() {
   const [team, setTeam] = useState([]);
   const [teams, setTeams] = useRecoilState(teamsState);
 
-  const saveTeam = (ev) => {
-    ev.preventDefault();
+  const saveTeam = () => {
     setTeamName(teamField);
     setTeamField('');
   };
 
-  const savePlayer = (ev) => {
-    ev.preventDefault();
+  const savePlayer = () => {
+    // @ts-ignore
     setTeam((players) => [
       ...players,
       { id: shortid.generate(), name: playerField },
@@ -45,13 +44,13 @@ export default function AddTeam() {
     setPlayerField('');
   };
 
-  const AddTeam = (ev) => {
-    ev.preventDefault();
+  const AddTeam = () => {
     const savedTeam = {
       id: shortid.generate(),
       team: teamName,
       players: team,
     };
+    // @ts-ignore
     setTeams([...teams, savedTeam]);
     setTeam([]);
     setTeamName('');
